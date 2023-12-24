@@ -3,7 +3,7 @@ on: [push]
 permissions:
   contents: write
 jobs:
-  report:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
@@ -17,10 +17,9 @@ jobs:
       - name: execute py script # run main.py
         run: python main.py
 
-      - name: Commit report
+      - name: Commit feed
         run: |
           git config --global user.name 'Abdulaziz Ali'
           git config --global user.email 'variant.abdulaziz@gmail.com'
-          git add -A
           git commit -am "Automated Feed update"
           git push

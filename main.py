@@ -6,7 +6,7 @@ root = ET.Element("rss")
 # Create a child element
 item = ET.SubElement(root, "item")
 title = ET.SubElement(item, "title")
-title.text = "Trigger workflow"
+title.text = "title"
 
 # Create the XML tree
 tree = ET.ElementTree(root)

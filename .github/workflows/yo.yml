@@ -1,0 +1,26 @@
+name: Push commit
+on: pull_request
+permissions:
+  contents: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+      
+      - name: execute py script # run main.py
+        run: python main.py
+
+      - name: Commit report
+        run: |
+          git config --global user.name 'Abdulaziz Ali'
+          git config --global user.email 'variant.abdulaziz@gmail.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git add -A
+          git commit -am "Automated Feed update"
+          git push
